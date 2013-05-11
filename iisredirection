@@ -7,30 +7,20 @@ using System.Collections.Generic;
 public class Script
 {
 	
+	private const string SourcePath = @"D:\home\bin\";
 	private const string TargetPath = @"%windir%\system32\inetsrv\config\redirection.config";
 	
-	private static Dictionary<string, string> _configs = new Dictionary<string, string>
-	{
-		{ "eloqua", @"eloqua.redirection.config" },
-		{ "forexai", @"forexai.redirection.config" }
-	};
-
     public static int Main(string[] args)
     {
-		if (args == null || args.Length != 1)
+		if (args == null || args.Length != 1 || string.IsNullOrEmpty(args[0]))
 		{
 			Console.WriteLine("Usage: iisredirection <config>");
 			return 1;
 		}
-		
-		var config = string.Empty;
-		if (!_configs.TryGetValue(args[0].ToLower(), out config))
-		{
-			Console.WriteLine("Unknown config: {0}", args[0]);
-			return 1;
-		}
-		
-		File.Copy(config, Environment.ExpandEnvironmentVariables(TargetPath), true);
+				
+		var sourceFile = string.Format("{0}.redirection.config", args[0]);
+		var sourcePath = Path.Combine(SourcePath, sourceFile);
+		File.Copy(sourcePath, Environment.ExpandEnvironmentVariables(TargetPath), true);
 		
 		return 0;
 	}
