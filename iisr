@@ -1,0 +1,28 @@
+#!/bin/bash
+set -e
+
+function usage
+{
+    echo "Usage: build <config>";
+}
+
+if [ "$#" -ne 1 ];
+then
+    echo "b";
+    usage;
+    exit 1;
+fi
+
+#Process the arguments
+for opt in "$@"
+do
+    case $opt in
+    forexai) path="D:\\home\\src\ForexAI\\src\\";;
+    forexai2) path="D:\\home\\src\ForexAI2\\src\\";;
+	eloqua) path="D:\\home\\src\\Eloqua\\Dev\\WORKING\\Config\\Development\\IISSetup\\IIS 7.5 Config\\";;
+	*) echo "a" ; usage ; exit 1 ;;
+	esac
+done
+
+echo \"$path\"
+iisredirection "$path"
