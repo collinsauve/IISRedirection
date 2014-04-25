@@ -8,7 +8,6 @@ function usage
 
 if [ "$#" -ne 1 ];
 then
-    echo "b";
     usage;
     exit 1;
 fi
@@ -18,11 +17,10 @@ for opt in "$@"
 do
     case $opt in
     forexai) path="D:\\home\\src\ForexAI\\src\\";;
-    forexai2) path="D:\\home\\src\ForexAI2\\src\\";;
-	eloqua) path="D:\\home\\src\\Eloqua\\Dev\\WORKING\\Config\\Development\\IISSetup\\IIS 7.5 Config\\";;
-	*) echo "a" ; usage ; exit 1 ;;
+    misc) path="D:\\home\\src\\misc";;
+	eloqua) path="D:\\Dev\\WORKING\\Config\\Development\\IISSetup\\IIS 7.5 Config\\";;
+	*) usage ; exit 1 ;;
 	esac
 done
 
-echo \"$path\"
 iisredirection "$path"
