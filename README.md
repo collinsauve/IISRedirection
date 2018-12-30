@@ -8,3 +8,5 @@ Tool for switching iis shared configurations - for switching between projects th
 ```
 IISRedirection <path>
 ```
+
+Where `path` is a folder that contains an `applicationHost.config` and an `administration.config`.
